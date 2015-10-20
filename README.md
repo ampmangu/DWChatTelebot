@@ -1,7 +1,7 @@
 # Doctor Who Chat Telegram-Bot
 Doctor Who Chat Telegram-Bot, it returns gifs and quotes from the show (Classic, Movie and Modern)
 
-Bot avalaible at [dwchatbot](https://web.telegram.org/#/im?p=@DWChatBot)
+Bot avalaible at [dwchatbot](telegram.me/DWChatBot)
 
 
 ## Install
