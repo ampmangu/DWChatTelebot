@@ -21,6 +21,7 @@ with open('quotes.json') as data_file:
     tenth = quotes["Tenth"]
     eleven = quotes["Eleven"]
     twelfth = quotes["Twelfth"]
+    companions = quotes["Companions"]
 
 def main():
     logging.basicConfig(
@@ -39,10 +40,10 @@ def main():
             update_id = update.update_id
 
             if '/start' in text:
-                custom_keyboard = [["/quote", "/gif"]]
+                custom_keyboard = [["/quote","/gif"]]
                 reply_markup = telegram.ReplyKeyboardMarkup(custom_keyboard, resize_keyboard=True)
                 bot.sendMessage(chat_id=chat_id,
-                                text="Chose.",
+                                text="Choose.",
                                 reply_markup=reply_markup)
                 LAST_UPDATE_ID = update_id + 1
 
@@ -51,6 +52,15 @@ def main():
                 bot.sendMessage(chat_id=chat_id,
                                 text=answer)
                 LAST_UPDATE_ID = update_id + 1
+                rn = random.randint(0,10)
+                if rn == 1:
+                    new_msg = "You've been visited by the TARDIS. "
+                    bot.sendMessage(chat_id=chat_id,text=new_msg)
+                    LAST_UPDATE_ID = update_id + 1
+                elif rn == 0 :
+                    new_msg = "Raxacoricofallapatorious!"
+                    bot.sendMessage(chat_id=chat_id,text=new_msg)
+                    LAST_UPDATE_ID = update_id + 1                    
 
             elif '/gif' in text:
                 bot.sendMessage(chat_id=chat_id,
@@ -60,10 +70,13 @@ def main():
                                  document=img.fixed_height.url)
                 print "Enviar Gif " + img.fixed_height.url
                 LAST_UPDATE_ID = update_id + 1
+            else:
+                bot.sendMessage(chat_id=chat_id,text="Command not recognized")
+                LAST_UPDATE_ID = update_id + 1
 
 
 def quote():
-    docnumber = random.randint(0,12)
+    docnumber = random.randint(0,13)
     if docnumber == 0:
         return "War Doctor: " + random.choice(war)
     elif docnumber == 1:
@@ -88,7 +101,9 @@ def quote():
         return "Tenth Doctor: " + random.choice(tenth)
     elif docnumber == 11:
         return "Eleventh Doctor: " + random.choice(eleven)
-    else:
+    elif docnumber == 12:
         return "Twelfth Doctor: " + random.choice(twelfth)
+    else:
+        return random.choice(companions)
 if __name__ == '__main__':
     main()
